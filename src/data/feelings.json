@@ -1,0 +1,22 @@
+[
+  {"id":"feelings-001","en":"I feel like...","ipa":"/aɪ ˈfiːl laɪk/","zh":"我觉得……（表达主观看法/想要，I feel like + 名词或从句）","example":"I feel like Italian tonight.","exampleZh":"我今晚想吃意大利菜。","scene":"feelings","difficulty":2},
+  {"id":"feelings-002","en":"If you ask me","ipa":"","zh":"要我说……（发表个人意见的开场）","example":"If you ask me, that movie was way too long.","exampleZh":"要我说，那电影太长了。","scene":"feelings","difficulty":2},
+  {"id":"feelings-003","en":"To be honest","ipa":"/tə bi ˈɑːnɪst/","zh":"说实话（说出真实想法前的缓冲）","example":"To be honest, I didn't like the food.","exampleZh":"说实话，那饭不好吃。","scene":"feelings","difficulty":1},
+  {"id":"feelings-004","en":"Personally, I'd rather...","ipa":"/ˈpɜːrsənəli/","zh":"就我个人而言，我更愿意……","example":"Personally, I'd rather stay in tonight.","exampleZh":"我个人今晚更想待在家。","scene":"feelings","difficulty":2},
+  {"id":"feelings-005","en":"That makes sense.","ipa":"/ðæt meɪks sens/","zh":"有道理。（听懂并认同的常用回应）","example":"— You're tired because you flew in last night. — That makes sense.","exampleZh":"——你刚下飞机当然累。——有道理。","scene":"feelings","difficulty":1},
+  {"id":"feelings-006","en":"I couldn't agree more.","ipa":"","zh":"完全同意。（字面意思是「不能再同意」= 双手赞成）","example":"— Great idea! — I couldn't agree more.","exampleZh":"——好主意！——举双手同意。","scene":"feelings","difficulty":2},
+  {"id":"feelings-007","en":"Fair enough.","ipa":"/fer ɪˈnʌf/","zh":"行吧，说得通。（接受对方理由，略带保留的让步）","example":"— I just don't like crowds. — Fair enough, we'll skip it.","exampleZh":"——我就是不喜欢人多。——行吧，那我们不去了。","scene":"feelings","difficulty":2},
+  {"id":"feelings-008","en":"Exactly.","ipa":"/ɪɡˈzæktli/","zh":"没错！（强烈附和）","example":"— So we start over? — Exactly.","exampleZh":"——所以要重来？——没错。","scene":"feelings","difficulty":1},
+  {"id":"feelings-009","en":"I'm not so sure about that.","ipa":"","zh":"这个我不太确定 / 我不太认同。（礼貌反对的安全说法）","example":"— It'll be easy. — Hmm, I'm not so sure about that.","exampleZh":"——这很简单。——嗯，我不好说。","scene":"feelings","difficulty":2},
+  {"id":"feelings-010","en":"I see it differently.","ipa":"","zh":"我的看法不太一样。（表达分歧但不带火药味）","example":"I see it differently — I think timing matters more.","exampleZh":"我看法不同——我觉得时机更重要。","scene":"feelings","difficulty":3},
+  {"id":"feelings-011","en":"I get what you're saying, but...","ipa":"/aɪ ɡet wət jʊr ˈseɪɪŋ/","zh":"我理解你的意思，但是……（先认同再反对的万能框架）","example":"I get what you're saying, but that's not how it works here.","exampleZh":"我懂你的意思，但这里不是这么运作的。","scene":"feelings","difficulty":3},
+  {"id":"feelings-012","en":"I'm exhausted.","ipa":"/aɪm ɪɡˈzɔːstɪd/","zh":"我累坏了。（比 very tired 地道得多）","example":"Two back-to-back meetings — I'm exhausted.","exampleZh":"连着两个会，我累趴了。","scene":"feelings","difficulty":1},
+  {"id":"feelings-013","en":"I'm overwhelmed.","ipa":"/aɪm ˌoʊvərˈwelmd/","zh":"我快撑不住了 / 事情多到手足无措。（职场心理高频词）","example":"I'm a bit overwhelmed with this project.","exampleZh":"这个项目压得我有点喘不过气。","scene":"feelings","difficulty":3},
+  {"id":"feelings-014","en":"I'm stoked!","ipa":"/aɪm stoʊkt/","zh":"我超激动！（美式俚语，兴奋到不行）","example":"Concert tickets? I'm stoked!","exampleZh":"演唱会的票？我太兴奋了！","scene":"feelings","difficulty":3},
+  {"id":"feelings-015","en":"I'm gutted.","ipa":"/aɪm ˈɡʌtɪd/","zh":"我难受死了。（英式，极度失望难过）","example":"They cancelled the game — I'm gutted.","exampleZh":"比赛取消了——我心都碎了。","scene":"feelings","difficulty":3},
+  {"id":"feelings-016","en":"It drives me crazy.","ipa":"/ɪt draɪvz mi ˈkreɪzi/","zh":"这快把我逼疯了。（吐槽反复出现的烦人事）","example":"That constant beeping drives me crazy.","exampleZh":"那个一直滴滴的声音快把我逼疯了。","scene":"feelings","difficulty":2},
+  {"id":"feelings-017","en":"I'm in a good mood.","ipa":"","zh":"我今天心情好。（mood = 心情，固定 in a ... mood）","example":"The sun is out — I'm in a good mood.","exampleZh":"出太阳了，我心情特别好。","scene":"feelings","difficulty":1},
+  {"id":"feelings-018","en":"I'm kind of down today.","ipa":"/kaɪnd ʌv daʊn/","zh":"我今天有点情绪低落。（down = 心情差，kind of 缓冲）","example":"I'm kind of down today — rain won't stop.","exampleZh":"我今天有点闷——雨下个不停。","scene":"feelings","difficulty":2},
+  {"id":"feelings-019","en":"Hang in there.","ipa":"/hæŋ ɪn ðer/","zh":"撑住！（给正在受苦的人打气）","example":"I know finals are brutal — hang in there.","exampleZh":"我知道期末很难熬——撑住。","scene":"feelings","difficulty":2},
+  {"id":"feelings-020","en":"You've got this.","ipa":"/jʊrz ɡɑːt ðɪs/","zh":"你可以的！（考前、上台前的经典鼓励）","example":"Big interview today? You've got this!","exampleZh":"今天大面试？你一定行的！","scene":"feelings","difficulty":2}
+]

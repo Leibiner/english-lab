@@ -1,0 +1,202 @@
+[
+  {
+    "id": "phone-001",
+    "en": "This is John speaking.",
+    "ipa": "",
+    "zh": "我是 John。（接电话自我介绍的标准说法，不用 I am John）",
+    "example": "Hi, this is David speaking from the IT department.",
+    "exampleZh": "你好，我是 IT 部门的 David。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-002",
+    "en": "It's Sarah here.",
+    "ipa": "",
+    "zh": "我是 Sarah。（朋友熟人之间打电话/回电话的非正式说法）",
+    "example": "It's Anna here — I just got your voicemail.",
+    "exampleZh": "我是 Anna，我刚听到你的留言。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-003",
+    "en": "Who's calling?",
+    "ipa": "",
+    "zh": "您找哪位？/ 请问是哪位打来的？（接电话时询问对方身份）",
+    "example": "May I ask who's calling, please?",
+    "exampleZh": "请问您是哪位？",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-004",
+    "en": "Can you hear me?",
+    "ipa": "",
+    "zh": "你能听到我说话吗？",
+    "example": "Can you hear me okay, or is the connection bad?",
+    "exampleZh": "你听我说话清楚吗，还是信号不好？",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-005",
+    "en": "I'll call you back.",
+    "ipa": "",
+    "zh": "我回给你电话。",
+    "example": "I can't talk right now — I'll call you back later.",
+    "exampleZh": "我现在不方便说话，晚点我回你电话。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-006",
+    "en": "I'm on a call.",
+    "ipa": "",
+    "zh": "我在打电话/在通话中。（表示现在不方便接别的电话）",
+    "example": "She's on a call, so she can't pick up.",
+    "exampleZh": "她在通话中，所以没法接电话。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-007",
+    "en": "voicemail",
+    "ipa": "/ˈvɔɪlˌmeɪl/",
+    "zh": "语音信箱；留言",
+    "example": "Leave me a voicemail and I'll get back to you.",
+    "exampleZh": "给我留个语音留言，我会回复你。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-008",
+    "en": "hang up",
+    "ipa": "/hæŋ ˈʌp/",
+    "zh": "挂断电话",
+    "example": "Don't hang up yet — I still need to tell you something.",
+    "exampleZh": "先别挂，我还有事要告诉你。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-009",
+    "en": "pick up",
+    "ipa": "/pɪk ˈʌp/",
+    "zh": "接电话",
+    "example": "I called you three times but you didn't pick up.",
+    "exampleZh": "我给你打了三个电话，你都没接。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-010",
+    "en": "loud and clear",
+    "ipa": "/ˈlaʊd ənd ˈklɪr/",
+    "zh": "听得很清楚",
+    "example": "Are you getting me? — Yeah, loud and clear.",
+    "exampleZh": "你能收到我吗？——能，听得特别清楚。",
+    "scene": "phone",
+    "difficulty": 1
+  },
+  {
+    "id": "phone-011",
+    "en": "I'm calling about ...",
+    "ipa": "",
+    "zh": "我打电话是想问……（说明来电意图的标准开场）",
+    "example": "I'm calling about the job advert on your website.",
+    "exampleZh": "我打电话是想问一下你们网站上那则招聘广告。",
+    "scene": "phone",
+    "difficulty": 2
+  },
+  {
+    "id": "phone-012",
+    "en": "You're breaking up.",
+    "ipa": "",
+    "zh": "你的声音断断续续的。（电话信号问题专用，不用 You are broken）",
+    "example": "Sorry, you're breaking up — can you say that again?",
+    "exampleZh": "抱歉，你那边信号断断续续的，能再说一遍吗？",
+    "scene": "phone",
+    "difficulty": 2
+  },
+  {
+    "id": "phone-013",
+    "en": "I've got a bad signal.",
+    "ipa": "",
+    "zh": "我这边信号不好。",
+    "example": "I've got a bad signal in this parking garage.",
+    "exampleZh": "我在这个地下车库里信号很差。",
+    "scene": "phone",
+    "difficulty": 2
+  },
+  {
+    "id": "phone-014",
+    "en": "shoot me a text",
+    "ipa": "/ʃut mi ə ˈtɛkst/",
+    "zh": "给我发条短信（非正式，= send me a text）",
+    "example": "Shoot me a text when you're outside the building.",
+    "exampleZh": "你到楼下的时候给我发条消息。",
+    "scene": "phone",
+    "difficulty": 2
+  },
+  {
+    "id": "phone-015",
+    "en": "hit me up",
+    "ipa": "/hɪt mi ˈʌp/",
+    "zh": "联系我/找我（很口语，朋友之间用）",
+    "example": "Hit me up later and we'll figure it out.",
+    "exampleZh": "回头找我，我们再想办法。",
+    "scene": "phone",
+    "difficulty": 2
+  },
+  {
+    "id": "phone-016",
+    "en": "Something came up.",
+    "ipa": "",
+    "zh": "临时有点事。（取消或推迟约定的标准模糊说法）",
+    "example": "I'm so sorry, something came up at work — can we take a rain check?",
+    "exampleZh": "真抱歉，工作上临时有点事，能改天吗？",
+    "scene": "phone",
+    "difficulty": 2
+  },
+  {
+    "id": "phone-017",
+    "en": "Can we push it to tomorrow?",
+    "ipa": "",
+    "zh": "能推到明天吗？（push = 推迟，比 postpone 口语得多）",
+    "example": "The meeting's at 3 — can we push it to tomorrow morning?",
+    "exampleZh": "会议是下午三点，能推到明天上午吗？",
+    "scene": "phone",
+    "difficulty": 3
+  },
+  {
+    "id": "phone-018",
+    "en": "Can I call you back in five?",
+    "ipa": "",
+    "zh": "我五分钟后给你回电话好吗？（five = five minutes）",
+    "example": "I'm at the front desk right now — can I call you back in five?",
+    "exampleZh": "我现在在前台，五分钟后再打给你行吗？",
+    "scene": "phone",
+    "difficulty": 3
+  },
+  {
+    "id": "phone-019",
+    "en": "Sorry, I didn't catch that.",
+    "ipa": "",
+    "zh": "抱歉，我没听清。（catch = 听清楚，别翻成\"抓住\"）",
+    "example": "Sorry, I didn't catch that — the line went quiet for a second.",
+    "exampleZh": "不好意思我没听清，刚才线路一下子没声了。",
+    "scene": "phone",
+    "difficulty": 3
+  },
+  {
+    "id": "phone-020",
+    "en": "I'll put you through.",
+    "ipa": "",
+    "zh": "我帮你转接。（put someone through = 转电话）",
+    "example": "Hold on, I'll put you through to her office.",
+    "exampleZh": "稍等，我帮你转到她办公室。",
+    "scene": "phone",
+    "difficulty": 3
+  }
+]

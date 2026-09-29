@@ -1,0 +1,252 @@
+[
+  {
+    "id": "tech-001",
+    "en": "sign up",
+    "ipa": "/ˈsaɪn ˈʌp/",
+    "zh": "注册；报名（名词是 sign-up）",
+    "example": "You need to sign up with an email address first.",
+    "exampleZh": "你得先用邮箱注册一下。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-002",
+    "en": "screenshot",
+    "ipa": "/ˈskrinˌʃɑt/",
+    "zh": "截图（名词、动词同形）",
+    "example": "Send me a screenshot of the error message.",
+    "exampleZh": "把报错信息截个图发我。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-003",
+    "en": "bug",
+    "ipa": "/bʌɡ/",
+    "zh": "程序缺陷、漏洞（也可作动词：出 bug、排查 bug）",
+    "example": "There's a bug in the new update.",
+    "exampleZh": "新版本的更新里有个 bug。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-004",
+    "en": "reboot",
+    "ipa": "/ˌriːˈbuːt/",
+    "zh": "重启（设备或系统）",
+    "example": "Have you tried rebooting the router?",
+    "exampleZh": "你试过重启路由器吗？",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-005",
+    "en": "glitch",
+    "ipa": "/ˈɡlɪtʃ/",
+    "zh": "小故障、抽风（比 bug 轻，常指临时的）",
+    "example": "It's just a glitch — refresh the page and it'll work.",
+    "exampleZh": "就是个小故障，刷新一下页面就好了。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-006",
+    "en": "prompt",
+    "ipa": "/prɑːmpt/",
+    "zh": "（给 AI 的）提示词；下指令（AI 时代高频新用法）",
+    "example": "I rewrote the prompt and the answer got way better.",
+    "exampleZh": "我重写了提示词，回答质量好了很多。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-007",
+    "en": "chatbot",
+    "ipa": "/ˈtʃætˌbɑːt/",
+    "zh": "聊天机器人、在线客服机器人",
+    "example": "The bank's chatbot actually solved my problem.",
+    "exampleZh": "银行那个客服机器人还真把我的问题解决了。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-008",
+    "en": "deepfake",
+    "ipa": "/ˈdiːpˌfeɪk/",
+    "zh": "深度伪造（AI 换脸/换声的视频音频）",
+    "example": "That video of the CEO is a deepfake.",
+    "exampleZh": "那段 CEO 的视频是深度伪造的。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-009",
+    "en": "AI-generated",
+    "ipa": "/ˌeɪ aɪ ˈdʒenəˌreɪtɪd/",
+    "zh": "AI 生成的（AI-generated content/image）",
+    "example": "Half of those product photos are AI-generated.",
+    "exampleZh": "那些产品图一半是 AI 生成的。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-010",
+    "en": "buffer",
+    "ipa": "/ˈbʌfər/",
+    "zh": "（视频音频）缓冲、预加载（进行时 buffering 常表示\"卡住加载中\"）",
+    "example": "Give it a second to buffer.",
+    "exampleZh": "等它缓冲一会儿。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-011",
+    "en": "no signal",
+    "ipa": "/noʊ ˈsɪɡnəl/",
+    "zh": "没信号",
+    "example": "There's no signal in the elevator.",
+    "exampleZh": "电梯里没信号。",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-012",
+    "en": "back it up",
+    "ipa": "/ˌbæk ɪt ˈʌp/",
+    "zh": "备份（动词是 back up，名词是 backup）",
+    "example": "Did you back it up before the update?",
+    "exampleZh": "更新之前你做备份了吗？",
+    "scene": "tech",
+    "difficulty": 1
+  },
+  {
+    "id": "tech-013",
+    "en": "reset my password",
+    "ipa": "/riːˈsɛt maɪ ˈpæswərd/",
+    "zh": "重置我的密码",
+    "example": "I need to reset my password — the old one expired.",
+    "exampleZh": "我得重置一下密码，旧密码过期了。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-014",
+    "en": "two-factor",
+    "ipa": "/ˈtuː ˌfæktər/",
+    "zh": "双因子验证（完整说法 two-factor authentication / 2FA，手机验证码那套）",
+    "example": "Turn on two-factor so hackers can't get into your account.",
+    "exampleZh": "把双重验证打开，黑客就进不了你的账户。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-015",
+    "en": "unsubscribe",
+    "ipa": "/ˌʌnsəbˈskraɪb/",
+    "zh": "退订（邮件底部那个 Unsubscribe 链接）",
+    "example": "I finally unsubscribed from all those newsletters.",
+    "exampleZh": "我总算把那些订阅的电子报全退订了。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-016",
+    "en": "push notification",
+    "ipa": "/ˌpʊʃ ˌnoʊtəˈfɪkeɪʃən/",
+    "zh": "推送通知（手机弹窗消息）",
+    "example": "Turn off push notifications while you're presenting.",
+    "exampleZh": "你演示的时候把推送通知关掉。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-017",
+    "en": "binge-watching",
+    "ipa": "/ˈbɪndʒ ˌwɑtʃɪŋ/",
+    "zh": "刷剧、一口气连着看（binge = 狂欢式 binge on sth）",
+    "example": "I binge-watched the whole season last night.",
+    "exampleZh": "我昨晚一口气刷完了一整季。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-018",
+    "en": "share my screen",
+    "ipa": "/ʃɛr maɪ ˈskrin/",
+    "zh": "共享我的屏幕",
+    "example": "Can I share my screen? I've got the charts ready.",
+    "exampleZh": "我能共享一下屏幕吗？图表我准备好了。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-019",
+    "en": "forward this to me",
+    "ipa": "/ˈfɔrwərd ðɪs tə mi/",
+    "zh": "把这个转发给我（forward sth to sb，注意介词 to）",
+    "example": "Forward this to me so I can show my manager.",
+    "exampleZh": "把这个转发给我，我好给我们经理看一下。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-020",
+    "en": "send you the link",
+    "ipa": "/sɛnd ju ðə lɪŋk/",
+    "zh": "把链接发给你（send sb sth 双宾语结构）",
+    "example": "I'll send you the link in a sec.",
+    "exampleZh": "我马上把链接发给你。",
+    "scene": "tech",
+    "difficulty": 2
+  },
+  {
+    "id": "tech-021",
+    "en": "The Wi-Fi's down.",
+    "ipa": "",
+    "zh": "无线网络挂了。（down = 服务中断，不说 is broken）",
+    "example": "We can't start the meeting — the Wi-Fi's down again.",
+    "exampleZh": "会开不了了——WiFi 又断了。",
+    "scene": "tech",
+    "difficulty": 3
+  },
+  {
+    "id": "tech-022",
+    "en": "I can't log in.",
+    "ipa": "",
+    "zh": "我登录不了。（log in / sign in 登录；log out 退出，别和 sign up 混）",
+    "example": "I can't log in — it keeps saying wrong password.",
+    "exampleZh": "我登不上去，它一直提示密码错误。",
+    "scene": "tech",
+    "difficulty": 3
+  },
+  {
+    "id": "tech-023",
+    "en": "My battery's dying.",
+    "ipa": "",
+    "zh": "我手机快没电了。（dying 形容电量见底的地道说法）",
+    "example": "My battery's dying, so I'll call you when I get home.",
+    "exampleZh": "我手机快没电了，到家再给你打。",
+    "scene": "tech",
+    "difficulty": 3
+  },
+  {
+    "id": "tech-024",
+    "en": "It's not loading.",
+    "ipa": "",
+    "zh": "（页面/内容）加载不出来。",
+    "example": "Refresh the page — hmm, it's still not loading.",
+    "exampleZh": "刷新一下页面——嗯，还是加载不出来。",
+    "scene": "tech",
+    "difficulty": 3
+  },
+  {
+    "id": "tech-025",
+    "en": "The app keeps crashing.",
+    "ipa": "",
+    "zh": "这个 App 老是闪退。（keep + doing = 反复发生，crash = 崩溃/闪退）",
+    "example": "Ever since the update, the app keeps crashing on my phone.",
+    "exampleZh": "自从那次更新之后，这 App 在我手机上老是闪退。",
+    "scene": "tech",
+    "difficulty": 3
+  }
+]

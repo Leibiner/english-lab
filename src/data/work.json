@@ -1,0 +1,302 @@
+[
+  {
+    "id": "work-001",
+    "en": "sounds good",
+    "ipa": "/saʊndz ɡʊd/",
+    "zh": "听起来不错；行，没问题（职场万能答应语）",
+    "example": "Friday at 3pm works for me — sounds good?",
+    "exampleZh": "周五下午三点我可以——行吗？",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-002",
+    "en": "I'm on it.",
+    "ipa": "",
+    "zh": "交给我，我马上处理。（表示已接手、在办）",
+    "example": "Don't worry about the report — I'm on it.",
+    "exampleZh": "报告的事别担心，我在弄了。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-003",
+    "en": "I'll follow up.",
+    "ipa": "",
+    "zh": "我会跟进。",
+    "example": "I'll follow up with the client after lunch.",
+    "exampleZh": "午饭后我会跟客户再跟进一下。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-004",
+    "en": "wrap up",
+    "ipa": "/ræp ˈʌp/",
+    "zh": "收尾；结束",
+    "example": "Let's wrap up — we're out of time.",
+    "exampleZh": "我们收个尾吧，时间到了。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-005",
+    "en": "I'm running late.",
+    "ipa": "",
+    "zh": "我要迟到了/会晚一点。",
+    "example": "Traffic's a mess — I'm running late, be there in 20.",
+    "exampleZh": "堵车堵疯了，我要晚点到，二十分钟后到。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-006",
+    "en": "call in sick",
+    "ipa": "/ˌkɔl ɪn ˈsɪk/",
+    "zh": "打电话请病假",
+    "example": "I've got a fever, so I'm going to call in sick tomorrow.",
+    "exampleZh": "我发烧了，明天打算请病假。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-007",
+    "en": "take a day off",
+    "ipa": "/ˌteɪk ə ˈdeɪ ˈɔf/",
+    "zh": "请一天假",
+    "example": "I need to take a day off to move to a new apartment.",
+    "exampleZh": "我得请一天假搬家。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-008",
+    "en": "work overtime",
+    "ipa": "/ˌwɜrk ˈoʊvərtaɪm/",
+    "zh": "加班",
+    "example": "We're working overtime this weekend to hit the deadline.",
+    "exampleZh": "这周末我们在加班赶截止日期。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-009",
+    "en": "screen share",
+    "ipa": "/ˌskrin ˈʃɛr/",
+    "zh": "共享屏幕（远程会议常用，名词/动词同形）",
+    "example": "Can you screen share so we can see the spreadsheet?",
+    "exampleZh": "你能共享一下屏幕吗，让我们看看那个表格。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-010",
+    "en": "I'm muted.",
+    "ipa": "",
+    "zh": "我静音了。（线上会议专用）",
+    "example": "Sorry, I'm muted — can you hear me now?",
+    "exampleZh": "抱歉我刚开着静音——现在能听到我了吗？",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-011",
+    "en": "You're on mute.",
+    "ipa": "",
+    "zh": "你开着静音呢。（提醒别人没开麦的高频句）",
+    "example": "You're on mute — that's why nobody can hear you.",
+    "exampleZh": "你静音了，所以大家听不到你说话。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-012",
+    "en": "ping me",
+    "ipa": "/ˈpɪŋ ˈmi/",
+    "zh": "发消息找我；提醒我一下（源于 IM 工具，泛指任何在线喊人）",
+    "example": "Ping me on Slack if anything comes up.",
+    "exampleZh": "有情况就在 Slack 上发消息找我。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-013",
+    "en": "Attaching the file.",
+    "ipa": "",
+    "zh": "（邮件/消息里）文件已附上。",
+    "example": "Hi Anna, attaching the file as promised — let me know if you can't open it.",
+    "exampleZh": "Anna 你好，按约定把文件发过去了，打不开跟我说。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-014",
+    "en": "hop on a call",
+    "ipa": "/ˌhap ɑn ə ˈkɔl/",
+    "zh": "快速开个语音/电话会（比 schedule a meeting 轻松随意）",
+    "example": "Let's hop on a quick call to sort this out.",
+    "exampleZh": "我们快速打个电话把这事儿捋清楚吧。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-015",
+    "en": "It's in progress.",
+    "ipa": "",
+    "zh": "在办了/进行中。",
+    "example": "The data migration is in progress and should finish by noon.",
+    "exampleZh": "数据迁移正在进行，中午之前能完。",
+    "scene": "work",
+    "difficulty": 1
+  },
+  {
+    "id": "work-016",
+    "en": "touch base",
+    "ipa": "/ˌtʌtʃ ˈbeɪs/",
+    "zh": "碰个头、简短沟通一下（职场高频俚语，touch base with someone）",
+    "example": "Let's touch base on Monday before the review.",
+    "exampleZh": "评审之前我们周一先碰一下。",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-017",
+    "en": "loop me in",
+    "ipa": "/ˌluːp ˈmi ˈɪn/",
+    "zh": "把我拉进（讨论/邮件）里；让我也知道（loop someone in）",
+    "example": "Loop me in on that email thread, will you?",
+    "exampleZh": "那个邮件往来也带上我一份，好吗？",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-018",
+    "en": "take minutes",
+    "ipa": "/ˌteɪk ˈmɪnɪts/",
+    "zh": "做会议记录（minutes = 会议纪要，不是\"分钟\"）",
+    "example": "Could you take minutes this time? I'll be presenting.",
+    "exampleZh": "这次你能帮忙记一下会议纪要吗？我要做汇报。",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-019",
+    "en": "call it a day",
+    "ipa": "/ˌkɔl ɪt ə ˈdeɪ/",
+    "zh": "今天到此为止/收工",
+    "example": "We're all exhausted — let's call it a day and continue tomorrow.",
+    "exampleZh": "大家都累垮了，今天先收工，明天接着干。",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-020",
+    "en": "swamped",
+    "ipa": "/swɑmpt/",
+    "zh": "忙得不可开交（原义\"陷入沼泽\"，be swamped with work）",
+    "example": "I'm swamped this week — can it wait till next Tuesday?",
+    "exampleZh": "我这周忙死了，能等到下周二吗？",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-021",
+    "en": "slammed",
+    "ipa": "/slæmd/",
+    "zh": "被（工作/需求）砸懵了、忙爆（口语，跟 swamped 类似）",
+    "example": "Support got slammed after the outage.",
+    "exampleZh": "系统宕机之后，客服那边消息爆炸，忙得不行。",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-022",
+    "en": "under a deadline",
+    "ipa": "/ˌʌndər ə ˈdɛdlaɪn/",
+    "zh": "赶着截止日期（be under a deadline / working under deadline pressure）",
+    "example": "Sorry I can't chat — I'm under a deadline today.",
+    "exampleZh": "抱歉没法闲聊，我今天赶着交东西。",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-023",
+    "en": "Just circling back on this.",
+    "ipa": "",
+    "zh": "再回来跟一下这件事。（邮件/消息里礼貌催跟进的开头）",
+    "example": "Hi team, just circling back on this — any updates?",
+    "exampleZh": "大家好，这事我再回来跟一下——有什么进展吗？",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-024",
+    "en": "on the same page",
+    "ipa": "/ˌɑn ðə ˈseɪm ˈpeɪdʒ/",
+    "zh": "（大家）认知一致、信息同步（keep everyone on the same page）",
+    "example": "Let's have a quick sync so everyone's on the same page.",
+    "exampleZh": "我们快速对齐一下，让所有人信息同步。",
+    "scene": "work",
+    "difficulty": 2
+  },
+  {
+    "id": "work-025",
+    "en": "Could we revisit that?",
+    "ipa": "",
+    "zh": "我们能重新考虑一下那件事吗？（revisit = 重新讨论/审视，委婉反对）",
+    "example": "The budget changed — could we revisit that decision?",
+    "exampleZh": "预算变了，我们能不能重新考虑一下那个决定？",
+    "scene": "work",
+    "difficulty": 3
+  },
+  {
+    "id": "work-026",
+    "en": "I see your point, but ...",
+    "ipa": "",
+    "zh": "你说的有道理，不过……（职场先肯定再转折的礼貌异议句式）",
+    "example": "I see your point, but I'm worried about the timeline.",
+    "exampleZh": "你的想法我理解，但我担心时间线来不及。",
+    "scene": "work",
+    "difficulty": 3
+  },
+  {
+    "id": "work-027",
+    "en": "Let's take this offline.",
+    "ipa": "",
+    "zh": "这个我们会后单独讨论。（会议上打断冗长争论的标准说法，不是\"下线\"）",
+    "example": "This is getting too detailed — let's take this offline and continue after the meeting.",
+    "exampleZh": "这个话题太细了，我们会后再单独聊吧。",
+    "scene": "work",
+    "difficulty": 3
+  },
+  {
+    "id": "work-028",
+    "en": "I don't have the bandwidth for that right now.",
+    "ipa": "",
+    "zh": "我现在没有精力/余力接这个。（bandwidth 比喻\"工作容量\"，委婉拒绝加活的常用句）",
+    "example": "I'd love to help, but I don't have the bandwidth for that right now.",
+    "exampleZh": "我很想帮忙，但我现在真的腾不出手。",
+    "scene": "work",
+    "difficulty": 3
+  },
+  {
+    "id": "work-029",
+    "en": "Sorry, I got tied up in a meeting.",
+    "ipa": "",
+    "zh": "抱歉，我被一个会拖住了。（be/get tied up = 被事情缠住脱不开身）",
+    "example": "Sorry, I got tied up in a meeting — did I miss you?",
+    "exampleZh": "抱歉，我被会拖住了——我是不是错过了找你？",
+    "scene": "work",
+    "difficulty": 3
+  },
+  {
+    "id": "work-030",
+    "en": "Any chance we can move the meeting?",
+    "ipa": "",
+    "zh": "有没有可能把会挪个时间？（any chance = 有可能吗，比 Can we 更委婉；move = 改时间）",
+    "example": "I have a conflict at 2 — any chance we can move the meeting earlier?",
+    "exampleZh": "我两点有个撞上的会——能把会议提前一点吗？",
+    "scene": "work",
+    "difficulty": 3
+  }
+]
