@@ -77,6 +77,7 @@ function mindmapCover(deck: TopicDeck): HTMLElement {
     el('div', 'xhs-kicker', 'ENGLISH LAB · 规则地图'),
     el('div', 'xhs-title', deck.title),
     el('div', 'xhs-title-en', deck.en),
+    el('div', 'mm-outcome', deck.outcome),
   );
   const center = el('div', 'mm-center');
   deck.center.forEach((line) => center.append(el('div', 'mm-center-line', line)));
@@ -93,7 +94,11 @@ function mindmapCover(deck: TopicDeck): HTMLElement {
   const demo = el('div', 'mm-demo mono');
   deck.demoBig.parts.forEach((p) => demo.append(el('span', p.c ? `mm-${p.c}` : '', p.text)));
   card.append(demo);
-  card.append(footer(`${deck.stat} · 左滑看细节 ⭐`));
+
+  const toc = el('div', 'mm-toc');
+  deck.sections.forEach((s, i) => toc.append(el('span', 'mm-toc-item', `${'①②③④⑤⑥⑦⑧⑨'[i] ?? i + 1} ${s.title}`)));
+  card.append(toc);
+  card.append(footer(deck.stat));
   return card;
 }
 
@@ -140,13 +145,61 @@ function speakTexts(): string[] {
   return wordsByScene(currentKey as SceneId).flatMap((w) => [w.en, w.example]);
 }
 
-async function downloadCard(card: HTMLElement, index: number): Promise<void> {
-  // 显式 540×720 @2x：手机预览可能被 wrap 缩小，导出永远全尺寸
-  const url = await toPng(card, { width: 540, height: 720, pixelRatio: 2, cacheBust: true });
-  const link = el('a');
-  link.href = url;
-  link.download = `小红书-${currentKey.replace(':', '-')}-${String(index + 1).padStart(2, '0')}.png`;
-  link.click();
+async function renderPng(card: HTMLElement): Promise<string> {
+  // 显式 540×720 @2x：手机预览可能被 wrap 缩小，导出永远全尺寸 1080×1440
+  return toPng(card, { width: 540, height: 720, pixelRatio: 2, cacheBust: true });
+}
+
+/* ---------- 全屏查看 + 下载/长按保存（iOS 微信不支持 a[download]） ---------- */
+
+let overlayList: string[] = [];
+let overlayIdx = 0;
+
+function overlayName(i: number): string {
+  return `english-lab-${currentKey.replace(':', '-')}-${String(i + 1).padStart(2, '0')}.png`;
+}
+
+function showOverlay(urls: string[], start: number): void {
+  overlayList = urls;
+  overlayIdx = start;
+  document.querySelector('.xhs-ov')?.remove();
+
+  const ov = el('div', 'xhs-ov');
+  const img = el('img', 'xhs-ov-img');
+  const counter = el('span', 'xhs-ov-count');
+  const dl = el('button', 'xhs-ov-btn', '⬇ 下载文件');
+  dl.addEventListener('click', () => {
+    const link = el('a');
+    link.href = overlayList[overlayIdx];
+    link.download = overlayName(overlayIdx);
+    link.click();
+  });
+  const close = el('button', 'xhs-ov-btn', '✕ 关闭');
+  close.addEventListener('click', () => ov.remove());
+  const prev = el('button', 'xhs-ov-arrow', '‹');
+  const next = el('button', 'xhs-ov-arrow', '›');
+  const nav = (d: number) => {
+    overlayIdx = (overlayIdx + d + overlayList.length) % overlayList.length;
+    sync();
+  };
+  prev.addEventListener('click', () => nav(-1));
+  next.addEventListener('click', () => nav(1));
+  function sync(): void {
+    img.src = overlayList[overlayIdx];
+    counter.textContent = `${overlayIdx + 1} / ${overlayList.length}`;
+    img.alt = overlayName(overlayIdx);
+  }
+  const top = el('div', 'xhs-ov-top');
+  top.append(counter, el('span', 'xhs-ov-hint', '📱 长按图片可存到相册（微信/iPhone）'), dl, close);
+  ov.append(top, prev, next, img);
+  ov.addEventListener('click', (e) => { if (e.target === ov) ov.remove(); });
+  document.body.append(ov);
+  sync();
+}
+
+async function openCardAt(stage: HTMLElement, index: number): Promise<void> {
+  const cards = Array.from(stage.querySelectorAll<HTMLElement>('.xhs-card'));
+  showOverlay([await renderPng(cards[index])], 0);
 }
 
 export function renderDeck(root: HTMLElement): void {
@@ -184,9 +237,10 @@ export function renderDeck(root: HTMLElement): void {
     cards.forEach((card, index) => {
       const wrap = el('div', 'xhs-wrap');
       wrap.append(card);
+      card.addEventListener('click', () => void openCardAt(stage, index)); // 点开=1:1 全屏查看
       if (index > 0) {
-        const save = el('button', 'xhs-save', '↓ 存这页');
-        save.addEventListener('click', () => void downloadCard(card, index));
+        const save = el('button', 'xhs-save', '👁 看大图 / 存图');
+        save.addEventListener('click', () => void openCardAt(stage, index));
         wrap.append(save);
       }
       stage.append(wrap);
@@ -210,10 +264,15 @@ export function renderDeck(root: HTMLElement): void {
   speakBtn.addEventListener('click', () => speakAll(speakTexts()));
   saveAll.addEventListener('click', async () => {
     const cards = Array.from(stage.querySelectorAll<HTMLElement>('.xhs-card'));
+    saveAll.disabled = true;
+    const urls: string[] = [];
     for (let i = 0; i < cards.length; i++) {
-      await downloadCard(cards[i], i);
-      await new Promise((r) => setTimeout(r, 350)); // 让浏览器喘口气，防下载被吞
+      saveAll.textContent = `生成中 ${i + 1}/${cards.length} …`; // 逐张渲染，给手机一点喘息
+      urls.push(await renderPng(cards[i]));
     }
+    saveAll.disabled = false;
+    saveAll.textContent = `📦 导出全部 ${cards.length} 张（3:4 · 1080×1440）`;
+    showOverlay(urls, 0); // 全屏逐张：可下载文件，也可长按存相册
   });
 
   keySel.addEventListener('change', () => {

@@ -19,6 +19,7 @@ export interface TopicDeck {
   id: string;
   title: string;
   en: string;
+  outcome: string; // 封面：学完能做到什么
   stat: string; // 封面数据行
   center: string[]; // 思维导图中心规则（分行）
   branches: { t: string; d: string }[]; // 中心下四个分支
@@ -30,7 +31,8 @@ export const NUMBER_TUTORIAL: TopicDeck = {
   id: 'numbers',
   title: '英语数字 · 一张图',
   en: '1 → 1,000,000',
-  stat: '一条规则管到百万 · 封面 + 7 页细节',
+  outcome: '学会这条规则：1 到 1,000,000 任意数字，看一眼就能读对',
+  stat: '7 页细节拆解 · 左滑逐课学',
   center: ['每 3 位切一段', '段内读「百 · 十 · 个」', '段尾挂单位词'],
   branches: [
     { t: '段内三格', d: '1-999 的读法' },
