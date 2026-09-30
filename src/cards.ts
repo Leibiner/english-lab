@@ -179,7 +179,55 @@ async function mergeToLongImage(urls: string[]): Promise<string> {
   return canvas.toDataURL('image/png');
 }
 
-/* ---------- 全屏查看 + 下载/长按保存（iOS 微信不支持 a[download]） ---------- */
+/* ---------- 文案与清单复制 ---------- */
+
+async function copyText(text: string, btn: HTMLButtonElement): Promise<void> {
+  const done = () => {
+    const old = btn.textContent;
+    btn.textContent = '✓ 已复制，去粘贴吧';
+    setTimeout(() => { btn.textContent = old; }, 1800);
+  };
+  try {
+    await navigator.clipboard.writeText(text);
+    done();
+  } catch {
+    const ta = el('textarea'); // http/老浏览器兜底
+    ta.value = text;
+    document.body.append(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    done();
+  }
+}
+
+function wordListText(): string {
+  if (currentKey.startsWith('topic:')) {
+    const deck = TOPIC_DECKS[currentKey.slice(6)];
+    const lines = [`${deck.title} · 表达清单`, ''];
+    deck.sections.forEach((s) => {
+      lines.push(`【${s.title}】`);
+      s.rows.forEach((r) => lines.push(`· ${r.word}  —  ${r.note}`));
+      lines.push('');
+    });
+    return lines.join('\n');
+  }
+  const words = wordsByScene(currentKey as SceneId);
+  const scene = SCENES.find((s) => s.id === currentKey);
+  return [`${scene?.zh ?? currentKey} · ${words.length} 条`, '', ...words.map((w) => `· ${w.en}${w.ipa ? ' ' + w.ipa : ''}  ${w.zh}`)].join('\n');
+}
+
+function postText(): string {
+  if (currentKey.startsWith('topic:')) return TOPIC_DECKS[currentKey.slice(6)].post.join('\n');
+  const scene = SCENES.find((s) => s.id === currentKey);
+  return [
+    `${scene?.icon ?? ''} ${scene?.zh}这些说法，课本真不教`,
+    `我把 ${wordsByScene(currentKey as SceneId).length} 个开口就能用的表达做成了卡组，场景直接套用`,
+    '#英语 #英语口语 #背单词 #学英语',
+  ].join('\n');
+}
+
+/* ---------- 全屏查看器（1:1 大图 + 下载/长按保存（iOS 微信不支持 a[download]） ---------- */
 
 let overlayList: string[] = [];
 let overlayIdx = 0;
@@ -328,6 +376,11 @@ export function renderDeck(root: HTMLElement): void {
     showOverlay(urls, 0); // iOS 微信：只能查看器长按，逐张存
   });
 
+  const postBtn = el('button', 'tab', '📝 复制发帖文案');
+  postBtn.addEventListener('click', () => void copyText(postText(), postBtn));
+  const listBtn = el('button', 'tab', '📋 复制表达清单');
+  listBtn.addEventListener('click', () => void copyText(wordListText(), listBtn));
+
   const longBtn = el('button', 'tab', '🧩 拼一张长图');
   longBtn.addEventListener('click', async () => {
     const urls = await generateAll(longBtn);
@@ -346,7 +399,7 @@ export function renderDeck(root: HTMLElement): void {
     draw();
   });
 
-  toolbar.append(keySel, perSel, speakBtn, saveAll, longBtn);
+  toolbar.append(keySel, perSel, speakBtn, saveAll, longBtn, postBtn, listBtn);
   root.append(el('div', 'xhs-note', `当前卡组：${deckLabel()} · 每页一张 3:4，适合小红书/朋友圈九宫格`), toolbar, stage);
   draw();
 }

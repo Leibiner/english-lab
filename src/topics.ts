@@ -22,6 +22,7 @@ export interface TopicDeck {
   en: string;
   outcome: string; // 封面：学完能做到什么
   stat: string; // 封面页脚行
+  post: string[]; // 小红书发帖文案：标题/正文行/标签
   center: string[]; // 思维导图中心规则（分行）
   branches: { t: string; d: string }[]; // 中心下分支
   demoBig: { parts: { text: string; c: string }[] }; // 封面底部拆解示例，c=颜色类
@@ -34,6 +35,16 @@ export const NUMBER_TUTORIAL: TopicDeck = {
   en: '基数 + 序数 · 0 → 1,000,000',
   outcome: '学会这条规则：数字念得对，名次日期也说得出口',
   stat: '9 页细节拆解 · 左滑逐课学',
+  post: [
+    '英语数字，一张图全捋顺🔢',
+    '学了十几年还会读错 40 和 14 的举手🙋',
+    '其实英文数字就一条规则：从右每 3 位切一段，段内"几百十几几"，段尾挂 thousand / million',
+    '1,234,567 = one million · two hundred thirty-four thousand · five hundred sixty-seven',
+    '顺序也要会：first second third 得硬背，fifth、ninth、twelfth 都在拼写上挖坑',
+    '全套拆成 10 张卡：0-12 → teens → 整十 → 百位 → 逗号换挡 → 中英万亿换算 → 序数词两页 → 口诀自测',
+    '存下慢慢背，通勤路上扫两页',
+    '#英语 #学英语 #英语口语 #背单词 #英语学习笔记 #成人英语 #零基础英语 #数字',
+  ],
   center: ['数词 = 基数（数量）+ 序数（顺序）', '大数每 3 位切一段', '段内读「百 · 十 · 个」段尾挂单位'],
   branches: [
     { t: '基数词', d: 'one two three · 数数量' },
