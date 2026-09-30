@@ -140,6 +140,6 @@ export function renderDeck(root: HTMLElement): void {
   });
 
   toolbar.append(sceneSel, perSel, speakBtn, saveAll);
-  root.append(el('div', 'xhs-note', `当前主题：${zh} · 封面 + 每页 ${perPage} 条，适合小红书/朋友圈九宫格`), toolbar);
+  root.append(el('div', 'xhs-note', `当前主题：${zh} · 封面 + 每页 ${perPage} 条，适合小红书/朋友圈九宫格`), toolbar, stage);
   draw();
 }
