@@ -5,18 +5,22 @@ import { renderQuiz } from './quiz';
 import { renderReview } from './review';
 import { renderStats } from './stats';
 import { renderStudy } from './study';
+import { renderPoster } from './poster';
 import { el } from './ui';
 
-type TabId = 'study' | 'review' | 'quiz' | 'stats';
+type TabId = 'study' | 'review' | 'quiz' | 'stats' | 'poster';
 
 const TABS: { id: TabId; label: string; render: (root: HTMLElement) => void }[] = [
   { id: 'study', label: '📖 学新词', render: renderStudy },
   { id: 'review', label: '🔄 复习', render: renderReview },
   { id: 'quiz', label: '✏️ 测一测', render: renderQuiz },
   { id: 'stats', label: '📊 统计', render: renderStats },
+  { id: 'poster', label: '📰 板报', render: renderPoster },
 ];
 
-let currentTab: TabId = 'study';
+// 支持 #poster 之类深链（headless 截图 / 收藏直达）
+const hashTab = location.hash.slice(1) as TabId;
+let currentTab: TabId = TABS.some((t) => t.id === hashTab) ? hashTab : 'study';
 
 function render(): void {
   const tabs = document.querySelector<HTMLElement>('#tabs');
@@ -28,6 +32,7 @@ function render(): void {
       const btn = el('button', `tab${tab.id === currentTab ? ' active' : ''}`, tab.label);
       btn.addEventListener('click', () => {
         currentTab = tab.id;
+        location.hash = tab.id;
         render();
       });
       return btn;

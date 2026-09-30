@@ -14,7 +14,7 @@ import feelings from './data/feelings.json';
 
 export const SCENES: Scene[] = [
   { id: 'greetings', zh: '打招呼寒暄', icon: '👋', count: 25 },
-  { id: 'numbers', zh: '数字·时间', icon: '🔢', count: 30 },
+  { id: 'numbers', zh: '数字·时间', icon: '🔢', count: 40 },
   { id: 'daily', zh: '日常沟通', icon: '💬', count: 40 },
   { id: 'transport', zh: '出行交通', icon: '🚇', count: 30 },
   { id: 'shopping', zh: '购物金钱', icon: '🛍️', count: 25 },

@@ -487,3 +487,147 @@ select {
     font-size: 24px;
   }
 }
+
+/* ===== 📰 板报（poster.ts）===== */
+.poster-toolbar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 6px 0 14px;
+}
+
+.poster-select {
+  border: 2px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.poster-host {
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.poster-board {
+  width: min(820px, 100%);
+  margin: 0 auto;
+  padding: 30px 34px 34px;
+  position: relative;
+  color: #fdfdf4;
+  background: radial-gradient(130% 130% at 50% 0%, #37604f 0%, #2a4c3e 55%, #213e33 100%);
+  border: 10px solid #7a5230;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 内圈粉笔虚线框 */
+.poster-board::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 2px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.poster-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+.poster-sub {
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 4px 0 20px;
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.poster-card {
+  padding: 15px 16px 12px;
+  position: relative;
+  border-radius: 10px;
+  color: #3b3b3b;
+  background: #fff8d6;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.poster-card:nth-child(4n + 1) { transform: rotate(-0.7deg); }
+.poster-card:nth-child(4n + 2) { transform: rotate(0.5deg); background: #ffe3ec; }
+.poster-card:nth-child(4n + 3) { transform: rotate(0.4deg); background: #ddf4ff; }
+.poster-card:nth-child(4n + 4) { transform: rotate(-0.4deg); background: #e5f8d3; }
+
+/* 顶部胶带 */
+.poster-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 76px;
+  height: 18px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.poster-num {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #9a9a9a;
+}
+
+.poster-en {
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.poster-ipa {
+  font-size: 13px;
+  color: #5f6b7a;
+  margin: 2px 0 4px;
+}
+
+.poster-zh {
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.poster-example {
+  font-size: 12px;
+  color: #555;
+  margin-top: 7px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.18);
+  line-height: 1.4;
+}
+
+.poster-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  z-index: 1;
+}

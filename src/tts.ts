@@ -26,3 +26,18 @@ export function speak(text: string, rate = 0.9): void {
   utterance.rate = rate;
   window.speechSynthesis.speak(utterance);
 }
+
+/** 顺序朗读一整列句子（speechSynthesis 自带队列），用于板报"读一遍" */
+export function speakAll(texts: string[], rate = 0.9): void {
+  if (!('speechSynthesis' in window)) return;
+  if (!englishVoice) refreshVoice();
+  window.speechSynthesis.cancel();
+  for (const text of texts) {
+    if (!text.trim()) continue;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    if (englishVoice) utterance.voice = englishVoice;
+    utterance.rate = rate;
+    window.speechSynthesis.speak(utterance);
+  }
+}
