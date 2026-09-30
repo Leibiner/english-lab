@@ -150,6 +150,34 @@ async function renderPng(card: HTMLElement): Promise<string> {
   return toPng(card, { width: 540, height: 720, pixelRatio: 2, cacheBust: true });
 }
 
+function dataUrlToPngFile(url: string, name: string): Promise<File> {
+  return fetch(url).then((r) => r.blob()).then((b) => new File([b], name, { type: 'image/png' }));
+}
+
+/** 8 张竖拼成一张长图（微信里长按一次 = 整套到手；自用/打印，不适合小红书发布） */
+async function mergeToLongImage(urls: string[]): Promise<string> {
+  const imgs = await Promise.all(urls.map((u) => new Promise<HTMLImageElement>((res, rej) => {
+    const img = el('img');
+    img.onload = () => res(img);
+    img.onerror = () => rej(new Error('图片解码失败'));
+    img.src = u;
+  })));
+  const gap = 30;
+  const canvas = el('canvas');
+  canvas.width = imgs[0].naturalWidth;
+  canvas.height = imgs.reduce((sum, i) => sum + i.naturalHeight, 0) + gap * (imgs.length - 1);
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('canvas 不可用');
+  ctx.fillStyle = '#fbf7ef';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  let y = 0;
+  for (const img of imgs) {
+    ctx.drawImage(img, 0, y);
+    y += img.naturalHeight + gap;
+  }
+  return canvas.toDataURL('image/png');
+}
+
 /* ---------- 全屏查看 + 下载/长按保存（iOS 微信不支持 a[download]） ---------- */
 
 let overlayList: string[] = [];
@@ -262,17 +290,50 @@ export function renderDeck(root: HTMLElement): void {
 
   const speakBtn = el('button', 'tab', '🔊 读一遍');
   speakBtn.addEventListener('click', () => speakAll(speakTexts()));
-  saveAll.addEventListener('click', async () => {
+  async function generateAll(progressBtn: HTMLButtonElement): Promise<string[]> {
     const cards = Array.from(stage.querySelectorAll<HTMLElement>('.xhs-card'));
-    saveAll.disabled = true;
+    progressBtn.disabled = true;
     const urls: string[] = [];
     for (let i = 0; i < cards.length; i++) {
-      saveAll.textContent = `生成中 ${i + 1}/${cards.length} …`; // 逐张渲染，给手机一点喘息
+      progressBtn.textContent = `生成中 ${i + 1}/${cards.length} …`;
       urls.push(await renderPng(cards[i]));
     }
-    saveAll.disabled = false;
-    saveAll.textContent = `📦 导出全部 ${cards.length} 张（3:4 · 1080×1440）`;
-    showOverlay(urls, 0); // 全屏逐张：可下载文件，也可长按存相册
+    progressBtn.disabled = false;
+    return urls;
+  }
+
+  /** 批量导出分平台走：系统分享(一次存相册) → 下载(电脑/安卓) → 查看器长按(iOS 微信兜底) */
+  saveAll.addEventListener('click', async () => {
+    const count = stage.querySelectorAll('.xhs-card').length;
+    const urls = await generateAll(saveAll);
+    const reset = () => { saveAll.textContent = `📦 导出全部 ${count} 张（3:4 · 1080×1440）`; };
+    reset();
+    const files = await Promise.all(urls.map((u, i) => dataUrlToPngFile(u, overlayName(i))));
+    const nav = navigator as Navigator & { canShare?: (d: ShareData) => boolean };
+    if (nav.canShare?.({ files })) {
+      await nav.share({ files, title: deckLabel() }).catch(() => undefined); // 用户取消分享不算错
+      return;
+    }
+    if (!/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      for (let i = 0; i < urls.length; i++) {
+        const link = el('a');
+        link.href = urls[i];
+        link.download = overlayName(i);
+        link.click();
+        await new Promise((r) => setTimeout(r, 350)); // 浏览器一次触发多个下载需要间隔
+      }
+      return;
+    }
+    showOverlay(urls, 0); // iOS 微信：只能查看器长按，逐张存
+  });
+
+  const longBtn = el('button', 'tab', '🧩 拼一张长图');
+  longBtn.addEventListener('click', async () => {
+    const urls = await generateAll(longBtn);
+    longBtn.textContent = '拼接中 …';
+    const long = await mergeToLongImage(urls);
+    longBtn.textContent = '🧩 拼一张长图';
+    showOverlay([long], 0); // 长按一次，整套到手
   });
 
   keySel.addEventListener('change', () => {
@@ -284,7 +345,7 @@ export function renderDeck(root: HTMLElement): void {
     draw();
   });
 
-  toolbar.append(keySel, perSel, speakBtn, saveAll);
+  toolbar.append(keySel, perSel, speakBtn, saveAll, longBtn);
   root.append(el('div', 'xhs-note', `当前卡组：${deckLabel()} · 每页一张 3:4，适合小红书/朋友圈九宫格`), toolbar, stage);
   draw();
 }
