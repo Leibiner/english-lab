@@ -1126,3 +1126,80 @@ select {
   letter-spacing: 10px;
   padding-left: 10px;
 }
+
+/* ===== 密排列表页（0-12 / teens / tens / 换算等逐词全列） ===== */
+.xhs-items.compact {
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.xhs-items.compact .xhs-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.xhs-items.compact .xhs-label {
+  margin-bottom: 0;
+  flex: none;
+  min-width: 58px;
+  text-align: center;
+}
+
+.xhs-item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.xhs-item-body .xhs-en {
+  font-size: 17.5px;
+  flex: none;
+  max-width: 46%;
+}
+
+.xhs-item-body .xhs-zh {
+  font-size: 12.5px;
+  color: #6f6a5e;
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* 词表页密排（无 label 的堆叠条目） */
+.xhs-items.compact .xhs-item:not(:has(.xhs-item-body)) {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1px;
+  border-bottom: 1.5px dashed #e3d9c4;
+  padding-bottom: 7px;
+}
+
+/* 修正密排行：label 与内容同行 + 单词不换行 */
+.xhs-items.compact .xhs-item {
+  flex-direction: row;
+  align-items: center;
+}
+
+.xhs-item-body .xhs-en {
+  white-space: nowrap;
+  font-size: 16.5px;
+  max-width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xhs-item-body .xhs-zh {
+  font-size: 12px;
+}
+
+.xhs-items.compact .xhs-label {
+  padding: 2px 6px;
+  min-width: 52px;
+  font-size: 11px;
+}

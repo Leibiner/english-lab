@@ -1,5 +1,5 @@
-// 小红书卡组：封面 + 内容分页，固定 540×720（导出 2x = 1080×1440，标准 3:4）。
-// 两种卡组：主题教程卡组（topics.ts，思维导图封面+细节页）和场景词表卡组。
+// 小红书卡组：无封面直接开讲，固定 540×720（导出 2x = 1080×1440，标准 3:4）。
+// 两种卡组：主题教程（topics.ts，一页一个知识点，逐词列全）和场景词表（每页 N 条）。
 import { toPng } from 'html-to-image';
 import { SCENES, wordsByScene } from './data';
 import { TOPIC_DECKS, type TopicDeck, type TopicSection } from './topics';
@@ -8,7 +8,7 @@ import { speakAll } from './tts';
 import type { SceneId, Word } from './types';
 
 let currentKey = 'topic:numbers'; // 'topic:<id>' 或场景 id
-let perPage = 5;
+let perPage = 6;
 
 function deckLabel(): string {
   if (currentKey.startsWith('topic:')) return TOPIC_DECKS[currentKey.slice(6)].title;
@@ -29,32 +29,12 @@ function pageHead(chipText: string, pageNo: number, pages: number): HTMLElement 
   return head;
 }
 
-/* ---------- 场景词表卡组 ---------- */
-
-function coverCard(words: Word[], pages: number): HTMLElement {
-  const card = el('div', 'xhs-card xhs-cover');
-  card.append(
-    el('div', 'xhs-kicker', 'ENGLISH LAB · 场景表达'),
-    el('div', 'xhs-title', deckLabel()),
-    el('div', 'xhs-title-en', currentKey.toUpperCase()),
-  );
-  const stat = el('div', 'xhs-stat');
-  stat.append(
-    el('span', 'xhs-stat-b', `${words.length} 个`),
-    el('span', undefined, `开口就能用的说法 · 共 ${pages + 1} 页，左滑读完`),
-  );
-  card.append(stat);
-  const chips = el('div', 'xhs-chips');
-  words.slice(0, 6).forEach((w) => chips.append(el('span', 'xhs-chip', w.en)));
-  card.append(chips);
-  card.append(footer('建议收藏 ⭐ 随时翻 · english-lab'));
-  return card;
-}
+/* ---------- 场景词表页 ---------- */
 
 function wordPageCard(words: Word[], pageNo: number, pages: number): HTMLElement {
   const card = el('div', 'xhs-card');
   card.append(pageHead(deckLabel(), pageNo, pages));
-  const list = el('div', 'xhs-items');
+  const list = el('div', words.length > 5 ? 'xhs-items compact' : 'xhs-items');
   words.forEach((word) => {
     const item = el('div', 'xhs-item');
     item.append(
@@ -69,58 +49,28 @@ function wordPageCard(words: Word[], pageNo: number, pages: number): HTMLElement
   return card;
 }
 
-/* ---------- 主题教程卡组（思维导图封面 + 细节页） ---------- */
-
-function mindmapCover(deck: TopicDeck): HTMLElement {
-  const card = el('div', 'xhs-card xhs-cover xhs-mm');
-  card.append(
-    el('div', 'xhs-kicker', 'ENGLISH LAB · 规则地图'),
-    el('div', 'mm-deco', '☁️ ✨ 🐑 ⭐'),
-    el('div', 'xhs-title', deck.title),
-    el('div', 'xhs-title-en', deck.en),
-    el('div', 'mm-outcome', deck.outcome),
-  );
-  const center = el('div', 'mm-center');
-  deck.center.forEach((line) => center.append(el('div', 'mm-center-line', line)));
-  card.append(el('div', 'mm-stem'), center);
-
-  const links = el('div', 'mm-links');
-  deck.branches.forEach((b) => {
-    const node = el('div', 'mm-node');
-    node.append(el('div', 'mm-node-t', b.t), el('div', 'mm-node-d', b.d));
-    links.append(node);
-  });
-  card.append(el('div', 'mm-bus'), links);
-
-  const demo = el('div', 'mm-demo mono');
-  deck.demoBig.parts.forEach((p) => demo.append(el('span', p.c ? `mm-${p.c}` : '', p.text)));
-  card.append(demo);
-
-  const toc = el('div', 'mm-toc');
-  deck.sections.forEach((s, i) => toc.append(el('span', 'mm-toc-item', `${'①②③④⑤⑥⑦⑧⑨'[i] ?? i + 1} ${s.title}`)));
-  card.append(toc);
-  card.append(footer(deck.stat));
-  return card;
-}
+/* ---------- 主题教程页：compact=逐行全列表，普通=大块讲解 ---------- */
 
 function sectionCard(deck: TopicDeck, s: TopicSection, pageNo: number, pages: number): HTMLElement {
   const card = el('div', 'xhs-card');
-  card.append(pageHead(`${deck.title.split(' ')[0]} ${s.en}`, pageNo, pages));
+  card.append(pageHead(`${deck.title} · ${s.en}`, pageNo, pages));
   card.append(el('div', 'xhs-sec-title', s.title));
-  const list = el('div', 'xhs-items');
+  const list = el('div', s.compact ? 'xhs-items compact' : 'xhs-items');
   s.rows.forEach((r) => {
     const item = el('div', 'xhs-item');
-    item.append(
+    if (r.label) item.append(el('span', 'xhs-label', r.label));
+    const body = el('div', 'xhs-item-body');
+    body.append(
       el('div', r.hl ? 'xhs-en xhs-hl' : 'xhs-en', r.word),
-      el('div', 'xhs-zh', r.note),
+      ...(r.note ? [el('div', 'xhs-zh', r.note)] : []),
     );
-    if (r.label) item.prepend(el('span', 'xhs-label', r.label));
+    item.append(body);
     list.append(item);
   });
   card.append(list);
   card.append(el('div', 'xhs-demo mono', s.demo));
   if (s.tip) card.append(el('div', 'xhs-tip', `⚠️ ${s.tip}`));
-  card.append(footer('English Lab · 数字全教程'));
+  card.append(footer(`English Lab · ${deck.title}全教程 · ${deck.en}`));
   return card;
 }
 
@@ -130,12 +80,12 @@ function buildDeck(): HTMLElement[] {
   if (currentKey.startsWith('topic:')) {
     const deck = TOPIC_DECKS[currentKey.slice(6)];
     const pages = deck.sections.length;
-    return [mindmapCover(deck), ...deck.sections.map((s, i) => sectionCard(deck, s, i + 1, pages))];
+    return deck.sections.map((s, i) => sectionCard(deck, s, i + 1, pages));
   }
   const words = wordsByScene(currentKey as SceneId);
   const chunks: Word[][] = [];
   for (let i = 0; i < words.length; i += perPage) chunks.push(words.slice(i, i + perPage));
-  return [coverCard(words, chunks.length), ...chunks.map((c, i) => wordPageCard(c, i + 1, chunks.length))];
+  return chunks.map((c, i) => wordPageCard(c, i + 1, chunks.length));
 }
 
 function speakTexts(): string[] {
@@ -155,7 +105,7 @@ function dataUrlToPngFile(url: string, name: string): Promise<File> {
   return fetch(url).then((r) => r.blob()).then((b) => new File([b], name, { type: 'image/png' }));
 }
 
-/** 8 张竖拼成一张长图（微信里长按一次 = 整套到手；自用/打印，不适合小红书发布） */
+/** 多页竖拼成一张长图 */
 async function mergeToLongImage(urls: string[]): Promise<string> {
   const imgs = await Promise.all(urls.map((u) => new Promise<HTMLImageElement>((res, rej) => {
     const img = el('img');
@@ -204,10 +154,11 @@ async function copyText(text: string, btn: HTMLButtonElement): Promise<void> {
 function wordListText(): string {
   if (currentKey.startsWith('topic:')) {
     const deck = TOPIC_DECKS[currentKey.slice(6)];
-    const lines = [`${deck.title} · 表达清单`, ''];
-    deck.sections.forEach((s) => {
-      lines.push(`【${s.title}】`);
-      s.rows.forEach((r) => lines.push(`· ${r.word}  —  ${r.note}`));
+    const lines = [`${deck.title} · 全部知识点（${deck.en}）`, ''];
+    deck.sections.forEach((s, i) => {
+      lines.push(`【${i + 1}】${s.title}`);
+      s.rows.forEach((r) => lines.push(r.note ? `  ${r.label} ${r.word} —— ${r.note}` : `  ${r.label} ${r.word}`));
+      if (s.tip) lines.push(`  ⚠ ${s.tip}`);
       lines.push('');
     });
     return lines.join('\n');
@@ -227,7 +178,7 @@ function postText(): string {
   ].join('\n');
 }
 
-/* ---------- 全屏查看器（1:1 大图 + 下载/长按保存（iOS 微信不支持 a[download]） ---------- */
+/* ---------- 全屏查看器（1:1 大图 + 下载/长按保存，iOS 微信不支持 a[download]） ---------- */
 
 let overlayList: string[] = [];
 let overlayIdx = 0;
@@ -284,7 +235,7 @@ export function renderDeck(root: HTMLElement): void {
 
   const keySel = el('select', 'poster-select');
   for (const deck of Object.values(TOPIC_DECKS)) {
-    const opt = el('option', undefined, `🧮 ${deck.title}（思维导图+细节）`);
+    const opt = el('option', undefined, `🧮 ${deck.title}全教程（${deck.sections.length} 页）`);
     opt.value = `topic:${deck.id}`;
     if (currentKey === opt.value) opt.selected = true;
     keySel.append(opt);
@@ -296,7 +247,7 @@ export function renderDeck(root: HTMLElement): void {
     keySel.append(opt);
   }
   const perSel = el('select', 'poster-select');
-  for (const n of [4, 5, 6]) {
+  for (const n of [5, 6, 8]) {
     const opt = el('option', undefined, `每页 ${n} 条`);
     opt.value = String(n);
     if (n === perPage) opt.selected = true;
@@ -308,26 +259,23 @@ export function renderDeck(root: HTMLElement): void {
   const draw = () => {
     const isTopic = currentKey.startsWith('topic:');
     perSel.disabled = isTopic;
-    perSel.title = isTopic ? '教程卡组按规则分节，固定一页一节' : '';
+    perSel.title = isTopic ? '教程卡组按知识点分页，固定一页一节' : '';
     const cards = buildDeck();
     stage.replaceChildren();
     cards.forEach((card, index) => {
       const wrap = el('div', 'xhs-wrap');
       wrap.append(card);
-      card.addEventListener('click', () => void openCardAt(stage, index)); // 点开=1:1 全屏查看
-      if (index > 0) {
-        const save = el('button', 'xhs-save', '👁 看大图 / 存图');
-        save.addEventListener('click', () => void openCardAt(stage, index));
-        wrap.append(save);
-      }
+      card.addEventListener('click', () => void openCardAt(stage, index)); // 点开=1:1 全屏
+      const save = el('button', 'xhs-save', '👁 看大图 / 存图');
+      save.addEventListener('click', () => void openCardAt(stage, index));
+      wrap.append(save);
       stage.append(wrap);
     });
     fitScale();
     saveAll.textContent = `📦 导出全部 ${cards.length} 张（3:4 · 1080×1440）`;
   };
 
-  // 手机视口 <540 时整卡等比缩小显示；transform 加在 wrap 上，
-  // 导出走 toPng(card) + 显式 540×720，不受缩放影响，手机导出的仍是全尺寸图。
+  // 手机视口 <540 时整卡等比缩小显示；transform 在 wrap 上，导出不受影响
   function fitScale(): void {
     const k = Math.min(1, (stage.clientWidth - 8) / 540);
     for (const wrap of Array.from(stage.children)) {
@@ -339,6 +287,7 @@ export function renderDeck(root: HTMLElement): void {
 
   const speakBtn = el('button', 'tab', '🔊 读一遍');
   speakBtn.addEventListener('click', () => speakAll(speakTexts()));
+
   async function generateAll(progressBtn: HTMLButtonElement): Promise<string[]> {
     const cards = Array.from(stage.querySelectorAll<HTMLElement>('.xhs-card'));
     progressBtn.disabled = true;
@@ -351,16 +300,15 @@ export function renderDeck(root: HTMLElement): void {
     return urls;
   }
 
-  /** 批量导出分平台走：系统分享(一次存相册) → 下载(电脑/安卓) → 查看器长按(iOS 微信兜底) */
+  /** 批量导出分平台：系统分享(一次存相册) → 多文件下载(电脑/安卓) → 查看器长按(iOS 微信兜底) */
   saveAll.addEventListener('click', async () => {
     const count = stage.querySelectorAll('.xhs-card').length;
     const urls = await generateAll(saveAll);
-    const reset = () => { saveAll.textContent = `📦 导出全部 ${count} 张（3:4 · 1080×1440）`; };
-    reset();
+    saveAll.textContent = `📦 导出全部 ${count} 张（3:4 · 1080×1440）`;
     const files = await Promise.all(urls.map((u, i) => dataUrlToPngFile(u, overlayName(i))));
     const nav = navigator as Navigator & { canShare?: (d: ShareData) => boolean };
     if (nav.canShare?.({ files })) {
-      await nav.share({ files, title: deckLabel() }).catch(() => undefined); // 用户取消分享不算错
+      await nav.share({ files, title: deckLabel() }).catch(() => undefined); // 用户取消不算错
       return;
     }
     if (!/iPhone|iPad|iPod/.test(navigator.userAgent)) {
@@ -369,17 +317,12 @@ export function renderDeck(root: HTMLElement): void {
         link.href = urls[i];
         link.download = overlayName(i);
         link.click();
-        await new Promise((r) => setTimeout(r, 350)); // 浏览器一次触发多个下载需要间隔
+        await new Promise((r) => setTimeout(r, 350)); // 浏览器一次触发多下载需间隔
       }
       return;
     }
-    showOverlay(urls, 0); // iOS 微信：只能查看器长按，逐张存
+    showOverlay(urls, 0); // iOS 微信：查看器长按逐张存
   });
-
-  const postBtn = el('button', 'tab', '📝 复制发帖文案');
-  postBtn.addEventListener('click', () => void copyText(postText(), postBtn));
-  const listBtn = el('button', 'tab', '📋 复制表达清单');
-  listBtn.addEventListener('click', () => void copyText(wordListText(), listBtn));
 
   const longBtn = el('button', 'tab', '🧩 拼一张长图');
   longBtn.addEventListener('click', async () => {
@@ -389,6 +332,11 @@ export function renderDeck(root: HTMLElement): void {
     longBtn.textContent = '🧩 拼一张长图';
     showOverlay([long], 0); // 长按一次，整套到手
   });
+
+  const postBtn = el('button', 'tab', '📝 复制发帖文案');
+  postBtn.addEventListener('click', () => void copyText(postText(), postBtn));
+  const listBtn = el('button', 'tab', '📋 复制知识点清单');
+  listBtn.addEventListener('click', () => void copyText(wordListText(), listBtn));
 
   keySel.addEventListener('change', () => {
     currentKey = keySel.value;
@@ -400,6 +348,6 @@ export function renderDeck(root: HTMLElement): void {
   });
 
   toolbar.append(keySel, perSel, speakBtn, saveAll, longBtn, postBtn, listBtn);
-  root.append(el('div', 'xhs-note', `当前卡组：${deckLabel()} · 每页一张 3:4，适合小红书/朋友圈九宫格`), toolbar, stage);
+  root.append(el('div', 'xhs-note', `当前卡组：${deckLabel()} · 无封面直接开讲 · 每页一张 3:4`), toolbar, stage);
   draw();
 }
