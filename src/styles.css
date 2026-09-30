@@ -1071,3 +1071,58 @@ select {
 .xhs-mm .mm-toc { margin-top: 11px; gap: 5px; }
 .xhs-mm .mm-toc-item { font-size: 10.5px; padding: 2px 7px; }
 .xhs-mm .xhs-foot { margin-top: auto; padding-top: 9px; font-size: 11px; }
+
+/* ===== 手账风细节（学参考图） ===== */
+/* 内容卡左上/右下的装饰胶带 */
+.xhs-card:not(.xhs-cover)::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: -22px;
+  width: 90px;
+  height: 22px;
+  background: rgba(216, 190, 130, 0.55);
+  transform: rotate(-38deg);
+}
+
+.xhs-card:not(.xhs-cover) {
+  position: relative;
+  overflow: hidden;
+}
+
+.xhs-card:not(.xhs-cover)::after {
+  content: "";
+  position: absolute;
+  bottom: 26px;
+  right: -22px;
+  width: 90px;
+  height: 22px;
+  background: rgba(216, 130, 150, 0.4);
+  transform: rotate(-38deg);
+}
+
+/* 荧光笔标记（粉/黄交替） */
+.xhs-hl {
+  background: linear-gradient(transparent 15%, #ffd9e2 15% 88%, transparent 88%);
+  border-radius: 3px;
+  padding: 0 3px;
+  color: #b3264b;
+}
+
+.xhs-item:nth-child(even) .xhs-hl {
+  background: linear-gradient(transparent 15%, #ffe9a8 15% 88%, transparent 88%);
+  color: #8a5b00;
+}
+
+.xhs-sec-title {
+  display: inline-block;
+  border-bottom: 3px dotted #d9a4b1;
+  padding-bottom: 2px;
+}
+
+.mm-deco {
+  margin-top: 8px;
+  font-size: 19px;
+  letter-spacing: 10px;
+  padding-left: 10px;
+}

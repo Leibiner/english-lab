@@ -75,6 +75,7 @@ function mindmapCover(deck: TopicDeck): HTMLElement {
   const card = el('div', 'xhs-card xhs-cover xhs-mm');
   card.append(
     el('div', 'xhs-kicker', 'ENGLISH LAB · 规则地图'),
+    el('div', 'mm-deco', '☁️ ✨ 🐑 ⭐'),
     el('div', 'xhs-title', deck.title),
     el('div', 'xhs-title-en', deck.en),
     el('div', 'mm-outcome', deck.outcome),
@@ -110,7 +111,7 @@ function sectionCard(deck: TopicDeck, s: TopicSection, pageNo: number, pages: nu
   s.rows.forEach((r) => {
     const item = el('div', 'xhs-item');
     item.append(
-      el('div', 'xhs-en', r.word),
+      el('div', r.hl ? 'xhs-en xhs-hl' : 'xhs-en', r.word),
       el('div', 'xhs-zh', r.note),
     );
     if (r.label) item.prepend(el('span', 'xhs-label', r.label));
