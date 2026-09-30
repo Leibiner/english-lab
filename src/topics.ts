@@ -36,6 +36,38 @@ export const NUMBER_TUTORIAL: TopicDeck = {
   outcome: '学会这条规则：数字念得对，名次日期也说得出口',
   stat: '9 页细节拆解 · 左滑逐课学',
   post: [
+    '【标题二选一（≤20字）】',
+    '英语数词学习笔记：0到百万读法全整理',
+    '一张表存下：英语数字+序数词全部读法',
+    '',
+    '【正文】',
+    '英语数词 · 学习笔记（自用存档）',
+    '一、0-12 硬背：zero(电话0读oh) one two(w不发音) three(咬舌θ) four five six seven eight nine ten eleven twelve',
+    '二、13-19＝数字+teen，重音在 -TEEN。坑：thirteen 不是 three｜fifteen 去 y｜eighteen 一个 t。听：40 FOR-ty(重音前) vs 14 four-TEEN(重音后)',
+    '三、20-90＝-ty：twenty thirty forty(没有u) fifty sixty seventy eighty ninety；21-99 加连字符不加 and：twenty-one',
+    '四、百位：345＝three hundred (and) forty-five；two hundred students ✓ two hundreds ✗；hundreds of(数百)才加 s',
+    '五、逗号换挡：每 3 位一切。1千 thousand｜两个逗号 million｜三个逗号 billion；1,234,567＝one million · two hundred thirty-four thousand · five hundred sixty-seven',
+    '六、中英换算：10,000万＝ten thousand｜100,000＝one hundred thousand｜1,000,000百万＝one million｜10,000,000＝ten million｜100,000,000亿＝one hundred million；23万＝two hundred thirty thousand｜1.5亿＝one hundred fifty million',
+    '七、序数词：first second third 硬背；变形坑 fifth ninth twelfth｜twentieth(y→ie)｜twenty-first 只变个位；用法 the second floor｜May 3rd 读 May the third｜the twentieth century',
+    '八、场景：年龄 in his twenties｜年份 1990＝nineteen ninety、2025＝twenty twenty-five｜时刻 6:15＝a quarter past six、6:45＝a quarter to seven（≤30 past，>30 to）',
+    '口诀：每三位一切，段内几百十几几，段尾挂千百万，顺序要用 th',
+    '',
+    '【标签】',
+    '#英语笔记 #英语学习 #数词 #基数词 #序数词 #大数读法 #音标 #成人英语 #学习笔记分享 #英语干货',
+  ],
+  center: string[]; // 思维导图中心规则（分行）
+  branches: { t: string; d: string }[]; // 中心下分支
+  demoBig: { parts: { text: string; c: string }[] }; // 封面底部拆解示例，c=颜色类
+  sections: TopicSection[];
+}
+
+export const NUMBER_TUTORIAL: TopicDeck = {
+  id: 'numbers',
+  title: '英语数词 · 一张图',
+  en: '基数 + 序数 · 0 → 1,000,000',
+  outcome: '学会这条规则：数字念得对，名次日期也说得出口',
+  stat: '9 页细节拆解 · 左滑逐课学',
+  post: [
     '英语数字，一张图全捋顺🔢',
     '学了十几年还会读错 40 和 14 的举手🙋',
     '其实英文数字就一条规则：从右每 3 位切一段，段内"几百十几几"，段尾挂 thousand / million',
