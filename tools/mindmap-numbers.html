@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>English Numbers Map · 1 → 1,000,000</title>
+<style>
+  :root {
+    --bg: #f4f2ec;
+    --card: #fffefb;
+    --ink: #24272c;
+    --dim: #92908a;
+    --line: #e4e0d5;
+    --blue: #2f5fa8;
+    --green: #1d7a5a;
+    --amber: #a2661a;
+    --plum: #6d4fa8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+    padding: 56px 64px 44px;
+  }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Consolas, monospace; }
+
+  /* ---------- header ---------- */
+  .kicker {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1.5px solid var(--ink); padding-bottom: 14px;
+  }
+  .kicker .tag { font-size: 13px; letter-spacing: 3px; color: var(--dim); font-weight: 700; }
+  h1 { font-size: 40px; font-weight: 900; letter-spacing: 1px; margin-top: 22px; }
+  h1 .en { color: var(--dim); font-weight: 800; font-size: 24px; margin-left: 12px; letter-spacing: 2px; }
+  .lede { margin-top: 10px; font-size: 15.5px; color: #5c5a54; line-height: 1.7; }
+  .lede b { color: var(--ink); }
+
+  /* ---------- hero 例式 ---------- */
+  .hero {
+    margin-top: 30px; background: var(--card); border: 1px solid var(--line);
+    border-radius: 18px; padding: 30px 34px 26px; box-shadow: 0 2px 14px rgba(60,55,40,.05);
+  }
+  .hero .bignum { font-size: 60px; font-weight: 900; text-align: center; letter-spacing: 2px; }
+  .hero .bignum .c1 { color: var(--blue); }
+  .hero .bignum .c2 { color: var(--green); }
+  .hero .bignum .c3 { color: var(--plum); }
+  .hero .reading { display: flex; justify-content: center; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+  .chunk { border-radius: 10px; padding: 9px 16px; font-size: 16.5px; font-weight: 700; color: #fff; }
+  .chunk small { font-weight: 500; opacity: .85; margin-left: 6px; font-size: 13px; }
+  .chunk.b { background: var(--blue); } .chunk.g { background: var(--green); } .chunk.p { background: var(--plum); }
+  .formula { text-align: center; margin-top: 16px; font-size: 14px; color: var(--dim); letter-spacing: 1px; }
+  .formula b { color: var(--ink); font-size: 15.5px; letter-spacing: 2px; }
+
+  /* ---------- 三节 ---------- */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+  section {
+    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+    padding: 22px 24px; box-shadow: 0 2px 14px rgba(60,55,40,.05);
+  }
+  section.full { grid-column: 1 / -1; }
+  h2 { font-size: 18px; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+  h2 .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  h2 .sub { font-size: 12.5px; color: var(--dim); font-weight: 500; margin-left: auto; letter-spacing: 1px; }
+  .items { margin-top: 14px; display: grid; gap: 9px; }
+  .item { display: flex; align-items: baseline; gap: 12px; font-size: 14.5px; line-height: 1.5; }
+  .item .num { flex: none; width: 58px; font-weight: 800; font-size: 13px; color: #fff; text-align: center; border-radius: 6px; padding: 2.5px 0; }
+  .item .word { flex: none; min-width: 200px; font-weight: 700; font-size: 15px; }
+  .item .note { color: #6d6a63; font-size: 13.5px; }
+  .n-blue { background: var(--blue); } .n-green { background: var(--green); }
+  .n-amber { background: var(--amber); } .n-plum { background: var(--plum); }
+
+  /* 中文分组对照 */
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14.5px; }
+  th { text-align: left; color: var(--dim); font-weight: 600; font-size: 12.5px; padding: 0 10px 8px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 9px 10px 9px 0; border-bottom: 1px dashed var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  td.zh { font-weight: 800; width: 84px; }
+  td.d { font-weight: 700; color: var(--green); width: 190px; }
+  td.rule { color: #6d6a63; font-size: 13.5px; }
+  .hit { color: var(--amber); font-weight: 800; }
+
+  /* 坑 */
+  .pits { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .pit { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: #faf9f5; }
+  .pit .t { font-weight: 900; font-size: 15.5px; margin-bottom: 6px; }
+  .pit .t em { font-style: normal; }
+  .stress { letter-spacing: 1px; }
+  .stress b { color: var(--blue); font-weight: 900; }
+  .ok { color: var(--green); font-weight: 700; } .bad { color: #b3452f; font-weight: 700; }
+  .pit .d { font-size: 13px; color: #6d6a63; line-height: 1.6; margin-top: 4px; }
+
+  /* footer */
+  .footer { margin-top: 22px; display: flex; justify-content: space-between; align-items: center; }
+  .mantra { font-size: 15px; font-weight: 800; letter-spacing: 2px; border-left: 3px solid var(--ink); padding-left: 12px; }
+  .mantra span { color: var(--dim); font-weight: 500; font-size: 12.5px; display: block; letter-spacing: 1px; margin-top: 3px; }
+  .brand { text-align: right; font-size: 12.5px; color: var(--dim); letter-spacing: 2px; }
+</style>
+</head>
+<body>
+
+<div class="kicker">
+  <div class="tag">ENGLISH NUMBERS · RULE MAP</div>
+  <div class="tag mono">1 → 1,000,000</div>
+</div>
+
+<h1>英语数字，一张图读完<span class="en">HOW TO READ ANY NUMBER</span></h1>
+<p class="lede">英语读数不需要背 1 到一百万。它只需要<b>一条规则</b>：从右边起<b>每 3 位切一段</b>，段内永远只有「百·十·个」三格，段尾挂上单位词。任何数字都是这两步。</p>
+
+<div class="hero">
+  <div class="bignum mono"><span class="c1">1</span>,<span class="c2">234</span>,<span class="c3">567</span></div>
+  <div class="reading">
+    <span class="chunk b mono">one million<small>段③</small></span>
+    <span class="chunk g mono">two hundred (and) thirty-four thousand<small>段②</small></span>
+    <span class="chunk p mono">five hundred (and) sixty-seven<small>段①</small></span>
+  </div>
+  <div class="formula"><b>段内读法 × 段尾单位</b>，逗号 = 换挡键</div>
+</div>
+
+<div class="grid">
+
+  <section>
+    <h2><span class="dot" style="background:var(--blue)"></span>段内三格：百 · 十 · 个<span class="sub">EVERY CHUNK ≤ 999</span></h2>
+    <div class="items">
+      <div class="item"><span class="num n-blue mono">1-12</span><span class="word mono">one … twelve</span><span class="note">全独立，硬背区。eleven /ɪlevn/、twelve 里 ve 发 /v/</span></div>
+      <div class="item"><span class="num n-blue mono">13-19</span><span class="word mono">X + teen</span><span class="note">拼写三特例：thir<b>teen</b>·3 / fif<b>teen</b>·5 / eigh<b>teen</b>·8</span></div>
+      <div class="item"><span class="num n-blue mono">20-90</span><span class="word mono">X + ty</span><span class="note">forty 没有 u；ty 系重音<b>在前</b>：TWEN-ty</span></div>
+      <div class="item"><span class="num n-blue mono">21-99</span><span class="word mono">twenty-one</span><span class="note">十位 + <b>连字符</b> + 个位，中间不加 and</span></div>
+      <div class="item"><span class="num n-blue mono">100+</span><span class="word mono">two hundred and fifty-six</span><span class="note">hundred 后接十位时英音必带 and，美音可省</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="dot" style="background:var(--green)"></span>段尾单位：千 → 百万 → 十亿<span class="sub">EVERY COMMA ×1000</span></h2>
+    <div class="items">
+      <div class="item"><span class="num n-green mono">10³</span><span class="word mono">a / one thousand</span><span class="note">a thousand 更口语</span></div>
+      <div class="item"><span class="num n-green mono">10⁶</span><span class="word mono">one million</span><span class="note">百万 = 两个逗号</span></div>
+      <div class="item"><span class="num n-green mono">10⁹</span><span class="word mono">one billion</span><span class="note">美式 = 十亿（国际通用口径）</span></div>
+      <div class="item"><span class="num n-amber mono">×n</span><span class="word mono">two thousand ✓</span><span class="note">前面有具体数字 → 单位词<b>不加 s</b>；hundreds of people（模糊量）才加</span></div>
+    </div>
+  </section>
+
+  <section class="full">
+    <h2><span class="dot" style="background:var(--amber)"></span>中文 4 位一切，英文 3 位一切 —— 换算只背这 5 行<span class="sub">GROUPING: ×10000 vs ×1000</span></h2>
+    <table>
+      <tr><th>中文</th><th>写成数字</th><th>英文（按段读）</th><th>为什么绕</th></tr>
+      <tr><td class="zh">万</td><td class="mono">10,000</td><td class="d mono">ten thousand</td><td class="rule">英文没有「万」，= 10 个千</td></tr>
+      <tr><td class="zh">十万</td><td class="mono">100,000</td><td class="d mono">one hundred thousand</td><td class="rule">段内「100」+ 段尾 thousand</td></tr>
+      <tr><td class="zh">百万</td><td class="mono">1,000,000</td><td class="d mono">one million</td><td class="rule"><span class="hit">正好两个逗号 = million，锚点</span></td></tr>
+      <tr><td class="zh">千万</td><td class="mono">10,000,000</td><td class="d mono">ten million</td><td class="rule">= 10 个百万</td></tr>
+      <tr><td class="zh">亿</td><td class="mono">100,000,000</td><td class="d mono">one hundred million</td><td class="rule"><span class="hit">英文没有「亿」，= 100 个百万</span></td></tr>
+    </table>
+  </section>
+
+  <section class="full">
+    <h2><span class="dot" style="background:var(--plum)"></span>听口三坑：数字都会读，一开口就露馅的地方<span class="sub">MISTAKES TO AVOID</span></h2>
+    <div class="pits">
+      <div class="pit">
+        <div class="t stress">four<em class="mono"><b>teen</b></em> vs <em class="mono"><b>for</b>ty</em></div>
+        <div class="d">14 重音在后 four-<b>TEEN</b> ↗，40 重音在前 <b>FOR</b>-ty ↘。听力里靠重音分辨，不靠拼写。</div>
+      </div>
+      <div class="pit">
+        <div class="t mono">three /θriː/</div>
+        <div class="d">舌尖必须伸出齿间送气，读成 sree / free 老外会听成 3 或「免费」。</div>
+      </div>
+      <div class="pit">
+        <div class="t mono"><span class="ok">two hundred</span> / <span class="bad">two hundreds</span></div>
+        <div class="d">具体数量：单位词永远单数；只有 hundreds of（好几百）这种模糊量才加 s。</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer">
+  <div class="mantra">每三位一切 · 段内几百十几几 · 段尾挂千百万
+    <span>THE ONLY RULE: slice by 3, read the chunk, add the comma word.</span>
+  </div>
+  <div class="brand">ENGLISH LAB · NUMBERS MAP · 2026-09-30</div>
+</div>
+
+</body>
+</html>
