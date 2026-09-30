@@ -846,3 +846,109 @@ select {
 .xhs-cover {
   position: relative;
 }
+
+/* ===== 🧮 思维导图封面 & 教程页 ===== */
+.xhs-mm .xhs-title {
+  font-size: 46px;
+  margin-top: 20px;
+}
+
+.mm-stem,
+.mm-bus {
+  width: 2px;
+  background: #b9ae95;
+  margin: 0 auto;
+}
+
+.mm-stem { height: 16px; margin-top: 16px; }
+.mm-bus { height: 14px; }
+
+.mm-center {
+  background: #23262b;
+  color: #fbf7ef;
+  border-radius: 14px;
+  padding: 14px 26px;
+  text-align: center;
+}
+
+.mm-center-line { font-size: 17px; font-weight: 800; letter-spacing: 2px; line-height: 1.55; }
+
+.mm-links {
+  display: flex;
+  gap: 9px;
+  margin-top: 0;
+  width: 100%;
+}
+
+.mm-node {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid #d9cfb8;
+  border-top: 3px solid #d8431f;
+  border-radius: 10px;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.mm-node-t { font-size: 14.5px; font-weight: 900; }
+.mm-node-d { font-size: 11px; color: #8b8578; margin-top: 4px; line-height: 1.4; }
+
+.mm-demo {
+  margin-top: 22px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #55524a;
+  background: #f3ecdd;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.mm-b1 { color: #2f5fa8; font-weight: 900; }
+.mm-b2 { color: #1d7a5a; font-weight: 900; }
+.mm-b3 { color: #6d4fa8; font-weight: 900; }
+.mm-dim { color: #8b8578; }
+
+.xhs-sec-title {
+  font-size: 30px;
+  font-weight: 900;
+  margin: 14px 0 4px;
+  letter-spacing: 1px;
+}
+
+.xhs-card .xhs-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 12px;
+}
+
+.xhs-label {
+  align-self: flex-start;
+  background: #d8431f;
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-bottom: 3px;
+}
+
+.xhs-demo {
+  background: #23262b;
+  color: #f3ecdd;
+  border-radius: 10px;
+  font-size: 13.5px;
+  padding: 11px 14px;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.xhs-tip {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: #a2661a;
+  background: #fdf0dc;
+  border: 1px dashed #d9b877;
+  border-radius: 8px;
+  padding: 7px 12px;
+}
