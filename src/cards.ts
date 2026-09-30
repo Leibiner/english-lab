@@ -141,7 +141,8 @@ function speakTexts(): string[] {
 }
 
 async function downloadCard(card: HTMLElement, index: number): Promise<void> {
-  const url = await toPng(card, { pixelRatio: 2, cacheBust: true });
+  // 显式 540×720 @2x：手机预览可能被 wrap 缩小，导出永远全尺寸
+  const url = await toPng(card, { width: 540, height: 720, pixelRatio: 2, cacheBust: true });
   const link = el('a');
   link.href = url;
   link.download = `小红书-${currentKey.replace(':', '-')}-${String(index + 1).padStart(2, '0')}.png`;
@@ -190,8 +191,20 @@ export function renderDeck(root: HTMLElement): void {
       }
       stage.append(wrap);
     });
+    fitScale();
     saveAll.textContent = `📦 导出全部 ${cards.length} 张（3:4 · 1080×1440）`;
   };
+
+  // 手机视口 <540 时整卡等比缩小显示；transform 加在 wrap 上，
+  // 导出走 toPng(card) + 显式 540×720，不受缩放影响，手机导出的仍是全尺寸图。
+  function fitScale(): void {
+    const k = Math.min(1, (stage.clientWidth - 8) / 540);
+    for (const wrap of Array.from(stage.children)) {
+      (wrap as HTMLElement).style.transform = k < 1 ? `scale(${k})` : '';
+      (wrap as HTMLElement).style.height = k < 1 ? `${720 * k + 44}px` : '';
+    }
+  }
+  window.addEventListener('resize', fitScale);
 
   const speakBtn = el('button', 'tab', '🔊 读一遍');
   speakBtn.addEventListener('click', () => speakAll(speakTexts()));

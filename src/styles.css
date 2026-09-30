@@ -952,3 +952,5 @@ select {
   border-radius: 8px;
   padding: 7px 12px;
 }
+
+.xhs-wrap { transform-origin: top center; }
