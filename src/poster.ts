@@ -1,5 +1,6 @@
-// 板报视图：把某场景的词排成拼贴手抄报样式，朗读 + 导出 PNG。
-// 文字全部由代码渲染（AI 生图不可控中文/音标），版式在 styles.css 的 poster-* 类。
+// 板报 tab 外壳：两种模式——拼贴板报（renderCollage）与小红书卡组（cards.ts）。
+// 文字全部由代码渲染（AI 生图不可控中文/音标），版式在 styles.css。
+import { renderDeck } from './cards';
 import { toPng } from 'html-to-image';
 import { SCENES, wordsByScene } from './data';
 import { speakAll } from './tts';
@@ -54,7 +55,8 @@ function downloadBoard(board: HTMLElement): void {
   });
 }
 
-export function renderPoster(root: HTMLElement): void {
+/** 拼贴板报模式（原黑+胶带纸条风） */
+function renderCollage(root: HTMLElement): void {
   const toolbar = el('div', 'poster-toolbar');
 
   const sceneSel = el('select', 'poster-select');
@@ -95,4 +97,34 @@ export function renderPoster(root: HTMLElement): void {
   toolbar.append(sceneSel, countSel, speakBtn, saveBtn);
   draw();
   root.append(toolbar, boardHost);
+}
+
+/** tab 入口：模式切换 + 挂载对应视图 */
+type PosterMode = 'deck' | 'collage';
+let currentMode: PosterMode = 'deck';
+
+export function renderPoster(root: HTMLElement): void {
+  const switcher = el('div', 'poster-mode-switch');
+  const host = el('div', 'poster-mode-host');
+  const defs: { id: PosterMode; label: string }[] = [
+    { id: 'deck', label: '📱 小红书卡组' },
+    { id: 'collage', label: '🖼️ 拼贴板报' },
+  ];
+  const draw = () => {
+    switcher.replaceChildren(
+      ...defs.map((d) => {
+        const btn = el('button', `tab${d.id === currentMode ? ' active' : ''}`, d.label);
+        btn.addEventListener('click', () => {
+          currentMode = d.id;
+          draw();
+        });
+        return btn;
+      }),
+    );
+    host.replaceChildren();
+    if (currentMode === 'deck') renderDeck(host);
+    else renderCollage(host);
+  };
+  draw();
+  root.append(switcher, host);
 }
